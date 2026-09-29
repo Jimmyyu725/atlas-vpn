@@ -4,10 +4,10 @@
 -{"deployed":false,"netflix_playback":"not_tested"}
 +{
 +  "deployed": true,
-+  "netflix_playback": "not_tested",
++  "netflix_playback": "user_reported_10_min_success_region_unverified",
 +  "interface": "atlasvpn",
 +  "port": 51820,
 +  "server_tunnel_test": "passed_ipv4_ipv6_dns",
-+  "external_device_test": "pending",
++  "external_device_test": "iphone_profile_external_handshake_and_traffic_verified",
 +  "management_ui": "not_started_playback_gate"
 +}

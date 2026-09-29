@@ -40,6 +40,8 @@ WireGuard 已部署为 `wg-quick@atlasvpn.service`，使用 UDP 51820；iPhone�
 
 已经实际停止并回退本项目，核对防火墙与转发参数恢复基线，再重新部署复测；当前保留运行状态。没有重启 SSH、Docker 或备份服务。
 
-外部设备连接、Shadowrocket 实际导入、Windows 实际连接和 Netflix 美区播放尚待验证。管理页面尚未实现，仍遵循播放验收优先的顺序。详见[使用说明](使用说明.md)及 `VERIFICATION.txt`。
+名为 iPhone 的配置已产生来自外部公网端点的有效握手与双向流量，确认外部 UDP 入口和这份客户端凭据可用；配置名不代表实际设备识别。用户截图确认 Mac 上的 Shadowrocket 已开启，但 Global Routing 显示 Config，尚待改为 Proxy。
+
+用户已反馈《Scandal》测试可以连续播放 10 分钟、没有报错。该项记录为用户报告的播放通过；画质、关闭 VPN 前后片目差异及美区识别仍待核实。设备端全局路由及 DNS／IPv6、Windows 实际连接也尚待验证。管理页面尚未实现，仍遵循美区播放验收优先的顺序。详见[使用说明](使用说明.md)及 `VERIFICATION.txt`。
 
 本项目已建立 Git 基线；未完成的实施工作保存在 `feature/wireguard` 分支，不合并到 `main`，以区分阶段成果与完整需求验收。

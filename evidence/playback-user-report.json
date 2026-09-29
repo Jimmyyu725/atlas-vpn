@@ -1,0 +1,20 @@
+{
+  "recorded_at_utc": "2026-09-29T11:14:19.504510+00:00",
+  "source": "user_reply_to_playback_test_question",
+  "title": "Scandal",
+  "requested_episode": "Season 1 Episode 1",
+  "user_answer": "可以连续播放 10 分钟，无报错",
+  "playback_result": "user_reported_success_10_minutes",
+  "resolution": "not_verified",
+  "vpn_off_comparison": "pending",
+  "us_region_differential": "not_verified",
+  "screenshot": {
+    "path": "/home/jingtianyu/.codex/attachments/7d4ad215-8cc0-4199-88b0-63cdaff762fb/Screenshot 2026-09-29 at 7.12.39 PM.png",
+    "platform": "macOS",
+    "app": "Shadowrocket",
+    "connection_switch": "on",
+    "global_routing": "Config",
+    "protocol": "WireGuard / UDP"
+  },
+  "next_action": "Switch Global Routing to Proxy; use Mac-specific credentials; compare the same episode with VPN disabled."
+}

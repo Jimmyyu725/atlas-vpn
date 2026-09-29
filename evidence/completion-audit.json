@@ -3,15 +3,18 @@
   "server_deployment": "verified",
   "server_ipv4_ipv6_dns_encrypted_test": "verified_local_namespace",
   "rollback": "verified_then_redeployed",
-  "apple_shadowrocket_real_device": "pending_user_import",
+  "apple_shadowrocket_real_device": "iphone_profile_external_handshake_verified_app_settings_pending",
   "windows_real_device": "pending_user_import",
-  "external_udp_reachability": "unverified",
-  "netflix_us_playback": "unverified",
+  "external_udp_reachability": "verified_external_authenticated_iphone_profile",
+  "netflix_us_playback": "10_min_playback_user_reported_region_difference_pending",
   "netflix_test_candidate": {
     "name": "Scandal",
     "url": "https://www.netflix.com/title/70197057",
     "regional_difference": "requires_on_off_comparison"
   },
   "management_ui": "not_started_pending_playback_gate",
-  "next_action": "User imports client profile, reports connection and Netflix playback; investigate observed failure before UI."
+  "next_action": "User changes Config to Proxy, imports per-device credentials, and compares Netflix availability with VPN off; Windows testing and management UI remain incomplete.",
+  "mac_real_device": "Shadowrocket_visible_iphone_profile_active_binding_not_independently_proven",
+  "mac_shadowrocket_app": "confirmed_by_user_screenshot",
+  "device_full_tunnel_routing": "screenshot_shows_Config_change_to_Proxy_pending"
 }

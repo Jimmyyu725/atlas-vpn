@@ -65,7 +65,21 @@ OUTPUT=(empty)
 EXIT=0
 
 当前保留状态：重新部署后的服务 active、配置已更改；副本回退没有覆盖 MODIFIED_FILE。
-尚未验证：外部 UDP 入站、Shadowrocket 导入/实际连接、Windows 连接、设备端 DNS/IPv6、Netflix 美区节目连续播放。
+外部入口已验证：iPhone 配置产生来自非 Atlas 公网端点的有效握手和双向流量。尚未验证：客户端应用身份与设置、Mac/Windows 连接、设备端全局路由及 DNS/IPv6、Netflix 美区节目连续播放。
 尚未实现：管理页面；按用户确认的方案等待播放验收后开发。
 未改动：SSH 配置、Docker 配置、原有备份定时器；未执行系统升级或 autoremove。
 过程修复：隔离测试补建 /etc/netns 父目录；回退脚本修正 ufw route delete 参数顺序；修复后重新测试通过。
+
+EXTERNAL_DEVICE 更新
+证据文件：/home/jingtianyu/projects/atlas-vpn/evidence/iphone-external-connection.json
+COMMANDS=sudo -n wg show atlasvpn endpoints; sudo -n wg show atlasvpn latest-handshakes; sudo -n wg show atlasvpn transfer
+INPUT=当前实际 WireGuard 接口，匹配 iPhone 配置的公钥；不输出端点地址和密钥
+RESULT={"observed_at_utc": "2026-09-29T11:12:35.484547+00:00", "profile": "iphone", "last_handshake_utc": "2026-09-29T11:12:04+00:00", "external_endpoint": true, "endpoint_family": 4, "received_bytes": 2345965, "sent_bytes": 20242388, "scope": "Authenticated external connection using iphone profile; no application payload inspected", "not_proven": ["client_app_identity", "device_full_tunnel_dns_ipv6", "netflix_us_playback"]}
+EXIT=0（各条命令）
+
+PLAYBACK_USER_REPORT
+SOURCE=用户针对 Scandal 第一季第一集测试问题的回复
+LITERAL_REPLY=可以连续播放 10 分钟，无报错
+RESULT=用户报告连续播放通过；画质、美区差异、关闭 VPN 对比尚未核实。截图确认 macOS Shadowrocket 开启且 Global Routing=Config，尚待改为 Proxy。
+EVIDENCE=/home/jingtianyu/projects/atlas-vpn/evidence/playback-user-report.json
+本次仅更新证据和文档，没有重启或回退正在使用的 VPN 服务。

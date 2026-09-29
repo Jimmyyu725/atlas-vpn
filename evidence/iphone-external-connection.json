@@ -1,0 +1,15 @@
+{
+  "observed_at_utc": "2026-09-29T11:12:35.484547+00:00",
+  "profile": "iphone",
+  "last_handshake_utc": "2026-09-29T11:12:04+00:00",
+  "external_endpoint": true,
+  "endpoint_family": 4,
+  "received_bytes": 2345965,
+  "sent_bytes": 20242388,
+  "scope": "Authenticated external connection using iphone profile; no application payload inspected",
+  "not_proven": [
+    "client_app_identity",
+    "device_full_tunnel_dns_ipv6",
+    "netflix_us_playback"
+  ]
+}
