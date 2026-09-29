@@ -1,0 +1,48 @@
+{
+  "observed_at_utc": "2026-09-29T11:47:24.242921+00:00",
+  "source": "verified_jingtian-mac_ssh_read_only",
+  "settings_changed": false,
+  "vpn_session_before": "Disconnected",
+  "vpn_session_after": "Disconnected",
+  "session_stable_during_measurement": true,
+  "checks": {
+    "ipv4": {
+      "exit": 0,
+      "output": {
+        "country": "TW",
+        "matches_atlas": false
+      },
+      "stderr": ""
+    },
+    "ipv6": {
+      "exit": 0,
+      "output": {
+        "country": "TW",
+        "matches_atlas": false
+      },
+      "stderr": ""
+    },
+    "route_ipv4": {
+      "exit": 0,
+      "output": "interface: en0",
+      "stderr": ""
+    },
+    "route_ipv6": {
+      "exit": 0,
+      "output": "interface: en0",
+      "stderr": ""
+    },
+    "dns": {
+      "exit": 0,
+      "output": "nameserver[0] : 2001:b000:168::2\n  nameserver[1] : 2001:b000:168::1\n  nameserver[2] : 192.168.1.1",
+      "stderr": ""
+    },
+    "management_page": {
+      "exit": 28,
+      "output": "000",
+      "stderr": "curl: (28) Connection timed out after 4003 milliseconds"
+    }
+  },
+  "full_tunnel_egress_verified": false,
+  "limits": "Specific IPv4/IPv6 egress probes only; no claim about Netflix region or all application DNS traffic."
+}

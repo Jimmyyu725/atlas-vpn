@@ -13,8 +13,17 @@
     "regional_difference": "requires_on_off_comparison"
   },
   "management_ui": "deployed_private_authenticated_browser_and_api_tests_passed",
-  "next_action": "User confirms global Proxy mode and device DNS/IPv6, Windows connection, Netflix VPN-off regional comparison, and management-page access over the VPN.",
+  "next_action": "Wait for user Netflix VPN-off comparison and re-enable Shadowrocket Proxy; rerun read-only Mac checker, then complete Windows verification.",
   "mac_real_device": "mac_profile_handshake_and_traffic_verified",
   "mac_shadowrocket_app": "confirmed_by_user_screenshot",
-  "device_full_tunnel_routing": "screenshot_shows_Config_change_to_Proxy_pending"
+  "device_full_tunnel_routing": "screenshot_shows_Config_change_to_Proxy_pending",
+  "mac_direct_read_only_access": "verified_ssh_alias_jingtian-mac",
+  "mac_latest_observation": {
+    "file": "evidence/mac-current-observation.json",
+    "observed_at_utc": "2026-09-29T11:47:24.242921+00:00",
+    "vpn_session": "Disconnected",
+    "ipv4_country": "TW",
+    "ipv6_country": "TW",
+    "interpretation": "VPN-off baseline, not a leak finding"
+  }
 }
