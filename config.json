@@ -1,0 +1,11 @@
+{
+  "interface": "atlasvpn",
+  "uplink": "enp1s0",
+  "endpoint": "208.167.248.147",
+  "port": 51820,
+  "server_ipv4": "10.77.0.1/24",
+  "server_ipv6": "fd42:6174:6c61:7300::1/64",
+  "dns": ["1.1.1.1", "1.0.0.1"],
+  "mtu": 1380,
+  "initial_devices": ["iphone", "mac", "windows"]
+}
