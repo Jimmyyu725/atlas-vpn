@@ -1,0 +1,1 @@
+CONFIG_CHECK PASS devices=3 independent_keys=true ipv4_ipv6_full_tunnel=true permissions=600

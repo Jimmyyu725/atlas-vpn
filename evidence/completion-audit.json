@@ -1,0 +1,17 @@
+{
+  "overall": "incomplete",
+  "server_deployment": "verified",
+  "server_ipv4_ipv6_dns_encrypted_test": "verified_local_namespace",
+  "rollback": "verified_then_redeployed",
+  "apple_shadowrocket_real_device": "pending_user_import",
+  "windows_real_device": "pending_user_import",
+  "external_udp_reachability": "unverified",
+  "netflix_us_playback": "unverified",
+  "netflix_test_candidate": {
+    "name": "Scandal",
+    "url": "https://www.netflix.com/title/70197057",
+    "regional_difference": "requires_on_off_comparison"
+  },
+  "management_ui": "not_started_pending_playback_gate",
+  "next_action": "User imports client profile, reports connection and Netflix playback; investigate observed failure before UI."
+}

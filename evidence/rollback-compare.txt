@@ -1,0 +1,1 @@
+ROLLBACK PASS firewall_v4=baseline firewall_v6=baseline forwarding=baseline ssh=unchanged

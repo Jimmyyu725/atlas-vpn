@@ -1,0 +1,17 @@
+[
+  {
+    "name": "iphone",
+    "public_key": "xm2mHn6RdkpRQwJ+SKzGApue1WHJD/p1MwO5sNYuHEo=",
+    "address": "10.77.0.2/32, fd42:6174:6c61:7300::2/128"
+  },
+  {
+    "name": "mac",
+    "public_key": "5ZwE73F6GiENGHbr7Kfj12FWHMBjTsbN6p3IGftABEQ=",
+    "address": "10.77.0.3/32, fd42:6174:6c61:7300::3/128"
+  },
+  {
+    "name": "windows",
+    "public_key": "TNpG77fZdT14Q2S9t2j4lv6ir+f2h2tLBXFEHo8RBVQ=",
+    "address": "10.77.0.4/32, fd42:6174:6c61:7300::4/128"
+  }
+]

@@ -1,0 +1,7 @@
+{
+  "tested_at_unix": 1790679712,
+  "http_status": "200",
+  "curl_exit": 0,
+  "scope": "unauthenticated_homepage_only",
+  "playback_tested": false
+}

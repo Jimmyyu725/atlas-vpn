@@ -36,6 +36,10 @@ Atlas Automation Hub 是现有云服务器的实例名称，不是一个已有�
 
 ## 当前状态
 
-目前仅完成项目命名、目录建立与需求建档。没有安装 VPN 软件，没有改动路由、防火墙或线上服务，没有创建管理页面，也没有完成 Netflix 播放实测。
+WireGuard 已部署为 `wg-quick@atlasvpn.service`，使用 UDP 51820；iPhone、Mac 和 Windows 的独立配置与二维码位于 `clients/`。已验证服务器内隔离客户端的加密握手、DNS、IPv4／IPv6 美国出口，以及凭据撤销和恢复。
 
-此目录当前为项目规划资料；进入实际代码或部署实现阶段时，再建立相应 Git 基线、测试与回退记录。
+已经实际停止并回退本项目，核对防火墙与转发参数恢复基线，再重新部署复测；当前保留运行状态。没有重启 SSH、Docker 或备份服务。
+
+外部设备连接、Shadowrocket 实际导入、Windows 实际连接和 Netflix 美区播放尚待验证。管理页面尚未实现，仍遵循播放验收优先的顺序。详见[使用说明](使用说明.md)及 `VERIFICATION.txt`。
+
+本项目已建立 Git 基线；未完成的实施工作保存在 `feature/wireguard` 分支，不合并到 `main`，以区分阶段成果与完整需求验收。

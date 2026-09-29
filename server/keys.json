@@ -1,0 +1,15 @@
+{
+  "server": "uK3Peg9qg6pYaKqkh2cLhQhOTGKiY0IsMcwep4sGX3k=",
+  "iphone": {
+    "private": "+AhxlhnNr9IeWI3Wcrz8dE1DVpjoa70I+N35KWNJdE0=",
+    "psk": "SBlYOTDMIgRgWJFDlHBjtVsmhUURSXJQiCKxrYbY3aI="
+  },
+  "mac": {
+    "private": "mNvd2lshsCaqSzC0siaLPsJ3T39HJo8d407P09a/alI=",
+    "psk": "CMIO3Yu/xbzeF7hlp+SE9okQaMzkX/M06xZGRH8er0c="
+  },
+  "windows": {
+    "private": "MENuCYL3ItprQQgBHhp1ZqMHFddfkdwyajSI+XzEr1E=",
+    "psk": "qPXcuVR8zECQ3BBHGOg48Dk7M166mXu2qlompX4nr9Y="
+  }
+}

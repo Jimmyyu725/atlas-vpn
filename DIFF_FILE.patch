@@ -1,0 +1,13 @@
+--- /home/jingtianyu/projects/atlas-vpn/baseline/deployment.json
++++ /home/jingtianyu/projects/atlas-vpn/deployment.json
+@@ -1 +1,9 @@
+-{"deployed":false,"netflix_playback":"not_tested"}
++{
++  "deployed": true,
++  "netflix_playback": "not_tested",
++  "interface": "atlasvpn",
++  "port": 51820,
++  "server_tunnel_test": "passed_ipv4_ipv6_dns",
++  "external_device_test": "pending",
++  "management_ui": "not_started_playback_gate"
++}

@@ -1,0 +1,71 @@
+Atlas VPN 阶段验证记录（不代表 Netflix 美区需求完成）
+变更：deployed=false -> true；新增 atlasvpn / UDP 51820；IPv6 forwarding=0 -> 1，uplink accept_ra=0 -> 2；IPv4 forwarding 保持 1。
+MODIFIED_FILE=/home/jingtianyu/projects/atlas-vpn/deployment.json
+DIFF_FILE=/home/jingtianyu/projects/atlas-vpn/DIFF_FILE.patch
+VERIFICATION=/home/jingtianyu/projects/atlas-vpn/VERIFICATION.txt
+ROLLBACK=/home/jingtianyu/projects/atlas-vpn/ROLLBACK.sh
+ORIGINAL_SHA256=13652d280a08da7f58c3ea9a2eafd77e894a461b85e677d550211f45422f8183
+
+BASELINE
+COMMAND=cd /home/jingtianyu/projects/atlas-vpn && python3 scripts/status.py
+INPUT=部署前的本机系统状态
+OUTPUT={"interface_exists": false, "listen_port": null, "service_active": false}
+EXIT=0
+
+MODIFIED
+COMMAND=cd /home/jingtianyu/projects/atlas-vpn && python3 scripts/status.py
+INPUT=当前部署后的本机系统状态
+OUTPUT={"interface_exists": true, "listen_port": 51820, "service_active": true}
+EXIT=0
+
+CONFIG
+COMMAND=cd /home/jingtianyu/projects/atlas-vpn && python3 scripts/check.py
+INPUT=三台设备的真实配置（私钥未输出）
+OUTPUT=CONFIG_CHECK PASS devices=3 independent_keys=true ipv4_ipv6_full_tunnel=true permissions=600
+EXIT=0
+
+TUNNEL
+COMMAND=cd /home/jingtianyu/projects/atlas-vpn && sudo -n python3 scripts/integration.py
+INPUT=隔离网络命名空间，临时独立 WireGuard 客户端，传输 socket 在 Atlas 本机
+OUTPUT:
+TUNNEL PASS encrypted_handshake=true dns=true ipv4=US ipv6=US matches_atlas=true
+REVOKE PASS client_curl_exit=28
+RESTORE_PEER PASS ipv4=US
+SCOPE server_namespace_only; external_device=not_tested; netflix_playback=not_tested
+EXIT=0
+
+ROLLBACK（真实部署回退，随后重新部署）
+COMMAND=cd /home/jingtianyu/projects/atlas-vpn && sudo -n ./ROLLBACK.sh --deployment
+INPUT=本项目已部署服务和基线 sysctl 记录
+OUTPUT:
+Removed "/etc/systemd/system/multi-user.target.wants/wg-quick@atlasvpn.service".
+Rule deleted
+Rule deleted (v6)
+Rule deleted
+Rule deleted
+Rule deleted (v6)
+net.ipv4.ip_forward = 1
+net.ipv6.conf.all.forwarding = 0
+net.ipv6.conf.enp1s0.accept_ra = 0
+ROLLBACK_DEPLOYMENT interface=absent service=inactive previous_forwarding=restored
+EXIT=0
+回退状态 COMMAND=python3 scripts/status.py
+OUTPUT={"interface_exists": false, "listen_port": null, "service_active": false}
+EXIT=0
+恢复核对：ROLLBACK PASS firewall_v4=baseline firewall_v6=baseline forwarding=baseline ssh=unchanged
+恢复范围：防火墙 IPv4/IPv6 与转发设置回到基线，VPN 接口移除；SSH 保持 active；已安装工具包和项目文件保留。
+
+ROLLBACK_COPY
+COMMAND=cd /home/jingtianyu/projects/atlas-vpn && ./ROLLBACK.sh --test-copy evidence/rollback-copy.json
+INPUT=deployment.json 的另一份副本
+OUTPUT=ROLLBACK_COPY deployed=false netflix_playback=not_tested
+EXIT=0
+COMMAND=cmp baseline/deployment.json evidence/rollback-copy.json
+OUTPUT=(empty)
+EXIT=0
+
+当前保留状态：重新部署后的服务 active、配置已更改；副本回退没有覆盖 MODIFIED_FILE。
+尚未验证：外部 UDP 入站、Shadowrocket 导入/实际连接、Windows 连接、设备端 DNS/IPv6、Netflix 美区节目连续播放。
+尚未实现：管理页面；按用户确认的方案等待播放验收后开发。
+未改动：SSH 配置、Docker 配置、原有备份定时器；未执行系统升级或 autoremove。
+过程修复：隔离测试补建 /etc/netns 父目录；回退脚本修正 ufw route delete 参数顺序；修复后重新测试通过。

@@ -1,0 +1,4 @@
+TUNNEL PASS encrypted_handshake=true dns=true ipv4=US ipv6=US matches_atlas=true
+REVOKE PASS client_curl_exit=28
+RESTORE_PEER PASS ipv4=US
+SCOPE server_namespace_only; external_device=not_tested; netflix_playback=not_tested
