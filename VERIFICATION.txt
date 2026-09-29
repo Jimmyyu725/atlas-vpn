@@ -83,3 +83,8 @@ LITERAL_REPLY=可以连续播放 10 分钟，无报错
 RESULT=用户报告连续播放通过；画质、美区差异、关闭 VPN 对比尚未核实。截图确认 macOS Shadowrocket 开启且 Global Routing=Config，尚待改为 Proxy。
 EVIDENCE=/home/jingtianyu/projects/atlas-vpn/evidence/playback-user-report.json
 本次仅更新证据和文档，没有重启或回退正在使用的 VPN 服务。
+
+MANAGEMENT_UI 更新
+管理页已依据连接实测和用户播放成功反馈推进，独立保留美区差异为未完成项。
+验证记录：/home/jingtianyu/projects/atlas-vpn/evidence/ui/VERIFICATION.txt
+Mac 专用配置已经产生有效握手和双向流量。

@@ -1,0 +1,2 @@
+BROWSER PASS add=true disable=true enable=true qr=true
+BROWSER PASS desktop=true mobile_no_overflow=true runtime_errors=0 screenshots_saved=true

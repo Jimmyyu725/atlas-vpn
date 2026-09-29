@@ -1,0 +1,3 @@
+{"name": "iphone", "enabled": true, "received_bytes": 6809334, "sent_bytes": 75434696, "last_handshake_utc": "2026-09-29T11:31:23+00:00"}
+{"name": "mac", "enabled": true, "received_bytes": 5821935, "sent_bytes": 44748432, "last_handshake_utc": "2026-09-29T11:20:19+00:00"}
+{"name": "windows", "enabled": true, "received_bytes": 0, "sent_bytes": 0, "last_handshake_utc": null}

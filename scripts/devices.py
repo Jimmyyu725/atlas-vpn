@@ -5,6 +5,14 @@ import json
 from pathlib import Path
 import subprocess
 
+if Path('/usr/local/lib/atlas-vpn-ui/owner').exists():
+    result = subprocess.check_output(['sudo', '-n', 'python3', '/usr/local/lib/atlas-vpn-ui/app.py', 'status'], text=True)
+    for device in json.loads(result)['devices']:
+        last = device.pop('last_handshake')
+        device['last_handshake_utc'] = datetime.fromtimestamp(last, timezone.utc).isoformat() if last else None
+        print(json.dumps(device, ensure_ascii=False))
+    raise SystemExit(0)
+
 root = Path(__file__).resolve().parents[1]
 devices = json.loads((root / "server/devices.json").read_text())
 

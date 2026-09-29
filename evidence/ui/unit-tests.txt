@@ -1,0 +1,10 @@
+test_add_disable_enable_preserves_existing_keys (test_app.StoreTests.test_add_disable_enable_preserves_existing_keys) ... ok
+test_existing_profiles_are_byte_identical (test_app.StoreTests.test_existing_profiles_are_byte_identical) ... ok
+test_keep_one_enabled_profile (test_app.StoreTests.test_keep_one_enabled_profile) ... ok
+test_reject_names_and_duplicates (test_app.StoreTests.test_reject_names_and_duplicates) ... ok
+test_restore_previous_state_on_apply_error (test_app.StoreTests.test_restore_previous_state_on_apply_error) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.024s
+
+OK

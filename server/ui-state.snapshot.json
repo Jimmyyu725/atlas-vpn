@@ -1,0 +1,45 @@
+{
+  "config": {
+    "interface": "atlasvpn",
+    "uplink": "enp1s0",
+    "endpoint": "208.167.248.147",
+    "port": 51820,
+    "server_ipv4": "10.77.0.1/24",
+    "server_ipv6": "fd42:6174:6c61:7300::1/64",
+    "dns": [
+      "1.1.1.1",
+      "1.0.0.1"
+    ],
+    "mtu": 1380,
+    "initial_devices": [
+      "iphone",
+      "mac",
+      "windows"
+    ]
+  },
+  "server_key": "uK3Peg9qg6pYaKqkh2cLhQhOTGKiY0IsMcwep4sGX3k=",
+  "server_public": "cnfsBZuJ/neFg840niOih4qy8qAFPZWAuNZ1/q1ZJh8=",
+  "devices": {
+    "iphone": {
+      "private": "+AhxlhnNr9IeWI3Wcrz8dE1DVpjoa70I+N35KWNJdE0=",
+      "psk": "SBlYOTDMIgRgWJFDlHBjtVsmhUURSXJQiCKxrYbY3aI=",
+      "public": "xm2mHn6RdkpRQwJ+SKzGApue1WHJD/p1MwO5sNYuHEo=",
+      "offset": 2,
+      "enabled": true
+    },
+    "mac": {
+      "private": "mNvd2lshsCaqSzC0siaLPsJ3T39HJo8d407P09a/alI=",
+      "psk": "CMIO3Yu/xbzeF7hlp+SE9okQaMzkX/M06xZGRH8er0c=",
+      "public": "5ZwE73F6GiENGHbr7Kfj12FWHMBjTsbN6p3IGftABEQ=",
+      "offset": 3,
+      "enabled": true
+    },
+    "windows": {
+      "private": "MENuCYL3ItprQQgBHhp1ZqMHFddfkdwyajSI+XzEr1E=",
+      "psk": "qPXcuVR8zECQ3BBHGOg48Dk7M166mXu2qlompX4nr9Y=",
+      "public": "TNpG77fZdT14Q2S9t2j4lv6ir+f2h2tLBXFEHo8RBVQ=",
+      "offset": 4,
+      "enabled": true
+    }
+  }
+}

@@ -12,9 +12,9 @@
     "url": "https://www.netflix.com/title/70197057",
     "regional_difference": "requires_on_off_comparison"
   },
-  "management_ui": "not_started_pending_playback_gate",
-  "next_action": "User changes Config to Proxy, imports per-device credentials, and compares Netflix availability with VPN off; Windows testing and management UI remain incomplete.",
-  "mac_real_device": "Shadowrocket_visible_iphone_profile_active_binding_not_independently_proven",
+  "management_ui": "deployed_private_authenticated_browser_and_api_tests_passed",
+  "next_action": "User confirms global Proxy mode and device DNS/IPv6, Windows connection, Netflix VPN-off regional comparison, and management-page access over the VPN.",
+  "mac_real_device": "mac_profile_handshake_and_traffic_verified",
   "mac_shadowrocket_app": "confirmed_by_user_screenshot",
   "device_full_tunnel_routing": "screenshot_shows_Config_change_to_Proxy_pending"
 }

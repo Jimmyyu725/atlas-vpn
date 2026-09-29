@@ -1,0 +1,10 @@
+--- /home/jingtianyu/projects/atlas-vpn/evidence/ui/deployment.before.json
++++ /home/jingtianyu/projects/atlas-vpn/deployment.json
+@@ -5,5 +5,6 @@
+   "port": 51820,
+   "server_tunnel_test": "passed_ipv4_ipv6_dns",
+   "external_device_test": "iphone_profile_external_handshake_and_traffic_verified",
+-  "management_ui": "not_started_playback_gate"
++  "management_ui": "deployed_private_authenticated",
++  "management_url": "http://10.77.0.1:8787"
+ }

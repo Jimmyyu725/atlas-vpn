@@ -1,0 +1,79 @@
+Atlas VPN 管理页验证记录
+BRANCH=feature/management-ui
+CHANGED_FIELD=management_ui: not_started_playback_gate -> deployed_private_authenticated
+MODIFIED_FILE=/home/jingtianyu/projects/atlas-vpn/deployment.json
+DIFF_FILE=/home/jingtianyu/projects/atlas-vpn/evidence/ui/deployment.patch
+VERIFICATION=/home/jingtianyu/projects/atlas-vpn/evidence/ui/VERIFICATION.txt
+ROLLBACK=/home/jingtianyu/projects/atlas-vpn/scripts/rollback-ui.sh
+BASELINE_SHA256=87cc01376adcf4eeeda506968c83fa7b663644c041ae03d6982e463a09eda1ea
+
+BASELINE
+COMMAND=curl --noproxy '*' --max-time 3 -sS -o /dev/null -w '%{http_code}\n' http://10.77.0.1:8787/
+INPUT=部署管理页之前的本机 HTTP 请求
+STDOUT=000
+RESULT=connection refused
+EXIT=7
+
+MODIFIED
+COMMAND=python3 /home/jingtianyu/projects/atlas-vpn/ui/http_test.py
+INPUT=本机管理页；管理凭据从受保护文件读取，未输出
+OUTPUT:
+AUTH_REQUIRED PASS status=401
+HOST_CHECK PASS status=421
+STATUS PASS initial_devices_present=true secrets_absent=true
+DOWNLOADS PASS existing_profiles_unchanged=true qr_png=true
+BOUNDARY origin PASS status=403
+BOUNDARY format PASS status=415
+BOUNDARY name PASS status=400
+EXIT=0
+
+BROWSER
+COMMAND=node /home/jingtianyu/projects/atlas-vpn/ui/browser_test.mjs
+INPUT=独立 Chrome 测试会话；临时测试配置
+OUTPUT:
+BROWSER PASS add=true disable=true enable=true qr=true
+BROWSER PASS desktop=true mobile_no_overflow=true runtime_errors=0 screenshots_saved=true
+EXIT=0
+临时测试配置已经清除，原有 iPhone/Mac/Windows 密钥与配置未变。
+
+UNIT
+COMMAND=python3 -m unittest discover -s /home/jingtianyu/projects/atlas-vpn/ui -p 'test_*.py' -v
+INPUT=配置副本与模拟应用器，不修改真实 VPN
+OUTPUT:
+test_add_disable_enable_preserves_existing_keys (test_app.StoreTests.test_add_disable_enable_preserves_existing_keys) ... ok
+test_existing_profiles_are_byte_identical (test_app.StoreTests.test_existing_profiles_are_byte_identical) ... ok
+test_keep_one_enabled_profile (test_app.StoreTests.test_keep_one_enabled_profile) ... ok
+test_reject_names_and_duplicates (test_app.StoreTests.test_reject_names_and_duplicates) ... ok
+test_restore_previous_state_on_apply_error (test_app.StoreTests.test_restore_previous_state_on_apply_error) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.024s
+
+OK
+EXIT=0
+
+ROLLBACK
+COMMAND=sudo -n bash /home/jingtianyu/projects/atlas-vpn/scripts/rollback-ui.sh
+INPUT=已部署管理页；保留 VPN 和配置数据
+OUTPUT:
+Rule deleted
+UI_ROLLBACK service=inactive rule=removed vpn=untouched data=preserved
+EXIT=0
+回退后 VPN 原样状态：{"interface_exists": true, "listen_port": 51820, "service_active": true}
+恢复后的行为：管理页停止并移除其内网防火墙规则，VPN 接口和端口仍运行，配置数据保留。随后重新安装管理页。
+
+FINAL_BROWSER
+COMMAND=node /home/jingtianyu/projects/atlas-vpn/ui/browser_test.mjs --read-only
+INPUT=重新部署后的管理页
+OUTPUT:
+BROWSER PASS desktop=true mobile_no_overflow=true runtime_errors=0 screenshots_saved=true
+EXIT=0
+
+视觉核验：桌面和手机截图已打开检查，未见横向溢出或重叠。
+认证：未认证=401；非法 Host=421；跨站修改=403；表单格式=415；非法名称=400。
+监听：10.77.0.1:8787；没有公网地址监听。仅 WireGuard 内网有放行规则，另需管理员密码。
+未完成：用户外部浏览器访问管理页、Windows 实测、设备全局路由和 DNS/IPv6、Netflix 美区差异。
+UI 上的 Netflix 状态明确是用户反馈连续播放成功，不是自动片库解锁检测。
+
+COMBINED ROLLBACK SCOPE
+本次只实测管理页单独回退，VPN 保持运行。完整回退脚本新增管理页停用调用已通过语法检查，未在用户连接期间再次执行整个组合回退。

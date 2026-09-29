@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Atlas VPN</title><link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script></head>
+<body><main>
+<header><div><p class="eyebrow">你的私人美国出口</p><h1>Atlas VPN</h1></div><span class="badge">仅通过 VPN 访问</span></header>
+<section class="notice"><strong>连接已建立，验收仍在继续</strong><p id="verification">正在读取服务状态…</p><p>苹果设备使用 Shadowrocket，全局路由选择 <b>Proxy</b>；Windows 使用 WireGuard。每台设备使用独立配置。</p></section>
+<section class="summary"><div><span>配置数量</span><strong id="count">—</strong></div><div><span>最近有握手</span><strong id="recent">—</strong></div><div><span>当前统计流量</span><strong id="traffic">—</strong></div></section>
+<section class="panel"><div class="section-heading"><h2>设备配置</h2><button id="refresh" class="secondary">刷新</button></div><p class="muted">名称是配置标签，不是自动识别出的设备型号。停用会立即断开该配置，请勿停用正在用于管理页面的连接。</p><div id="devices"></div></section>
+<section class="panel"><h2>添加设备</h2><form id="add"><label for="name">为新配置取个名字</label><div class="form-row"><input id="name" name="name" placeholder="例如 ipad 或 work-laptop" pattern="[a-z][a-z0-9-]{0,30}" maxlength="31" required autocomplete="off"><button type="submit">生成独立配置</button></div><p class="muted">使用小写字母、数字和短横线，最多 31 个字符。</p></form></section>
+<p id="message" role="status" aria-live="polite"></p>
+<footer>每 10 秒刷新。流量为服务器当前计数，停用配置或重启接口后可能重置。管理页使用 VPN 内网传输，不对公网开放。</footer>
+</main><dialog id="qr"><button id="close-qr" class="secondary">关闭</button><h2 id="qr-title">扫码导入</h2><img id="qr-image" alt="设备专用 WireGuard 二维码"><p>仅导入这台设备，避免多台设备共用同一个二维码。</p></dialog></body></html>

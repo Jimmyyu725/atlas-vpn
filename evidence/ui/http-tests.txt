@@ -1,0 +1,7 @@
+AUTH_REQUIRED PASS status=401
+HOST_CHECK PASS status=421
+STATUS PASS initial_devices_present=true secrets_absent=true
+DOWNLOADS PASS existing_profiles_unchanged=true qr_png=true
+BOUNDARY origin PASS status=403
+BOUNDARY format PASS status=415
+BOUNDARY name PASS status=400

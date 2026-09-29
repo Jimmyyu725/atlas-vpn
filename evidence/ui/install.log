@@ -1,0 +1,4 @@
+UI_STATE_INITIALIZED credentials=not_printed
+Rule added
+Created symlink /etc/systemd/system/multi-user.target.wants/atlas-vpn-ui.service → /etc/systemd/system/atlas-vpn-ui.service.
+UI_DEPLOYED bind=10.77.0.1:8787 authentication=required public_listener=false

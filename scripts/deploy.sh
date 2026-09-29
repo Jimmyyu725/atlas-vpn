@@ -14,7 +14,12 @@ install -d -m 700 /etc/wireguard
 install -d -m 755 /usr/local/lib/atlas-vpn
 printf '%s\n' "$root" > /usr/local/lib/atlas-vpn/owner
 install -m 755 "$root/scripts/firewall.sh" /usr/local/lib/atlas-vpn/firewall.sh
-install -m 600 "$root/server/atlasvpn.conf" /etc/wireguard/atlasvpn.conf
+if [[ -f /var/lib/atlas-vpn-ui/state.json ]]; then
+  [[ $(cat /usr/local/lib/atlas-vpn-ui/owner 2>/dev/null) == "$root" ]] || exit 1
+  python3 /usr/local/lib/atlas-vpn-ui/app.py sync
+else
+  install -m 600 "$root/server/atlasvpn.conf" /etc/wireguard/atlasvpn.conf
+fi
 cat > /etc/sysctl.d/90-atlas-vpn.conf <<'EOF'
 # Atlas VPN: preserve IPv6 router advertisements while routing VPN clients.
 net.ipv4.ip_forward=1
@@ -34,12 +39,14 @@ else
   systemctl start wg-quick@atlasvpn.service
 fi
 python3 - "$root" <<'PY'
-import json, pathlib, sys
+import json, pathlib, subprocess, sys
 p = pathlib.Path(sys.argv[1]) / 'deployment.json'
 state = json.loads(p.read_text())
+ui_active = subprocess.run(['systemctl','is-active','--quiet','atlas-vpn-ui.service']).returncode == 0
+ui_state = 'deployed_private_authenticated' if ui_active else ('installed_inactive' if pathlib.Path('/var/lib/atlas-vpn-ui/state.json').exists() else 'not_started_playback_gate')
 state.update(deployed=True, interface='atlasvpn', port=51820,
              server_tunnel_test='pending', external_device_test='pending',
-             netflix_playback='not_tested', management_ui='not_started_playback_gate')
+             netflix_playback='not_tested', management_ui=ui_state)
 p.write_text(json.dumps(state, indent=2) + '\n')
 PY
 printf 'DEPLOYED interface=atlasvpn port=51820\n'

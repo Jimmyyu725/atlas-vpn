@@ -10,6 +10,9 @@ if [[ ${1:-} == --test-copy ]]; then
 fi
 [[ ${1:-} == --deployment && $EUID == 0 ]] || { echo 'Use sudo ROLLBACK.sh --deployment'; exit 2; }
 [[ $(cat /usr/local/lib/atlas-vpn/owner 2>/dev/null) == "$root" ]] || { echo 'Ownership mismatch'; exit 1; }
+if [[ -f /usr/local/lib/atlas-vpn-ui/owner ]]; then
+  bash "$root/scripts/rollback-ui.sh"
+fi
 systemctl disable --now wg-quick@atlasvpn.service
 /usr/local/lib/atlas-vpn/firewall.sh down
 ufw --force delete allow in on enp1s0 to any port 51820 proto udp

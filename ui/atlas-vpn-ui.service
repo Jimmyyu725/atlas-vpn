@@ -1,0 +1,29 @@
+[Unit]
+Description=Atlas VPN private management page
+Requires=wg-quick@atlasvpn.service
+After=wg-quick@atlasvpn.service
+PartOf=wg-quick@atlasvpn.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /usr/local/lib/atlas-vpn-ui/app.py serve
+Restart=on-failure
+RestartSec=3
+User=root
+UMask=0077
+NoNewPrivileges=true
+CapabilityBoundingSet=CAP_NET_ADMIN
+AmbientCapabilities=CAP_NET_ADMIN
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/atlas-vpn-ui /etc/wireguard
+PrivateTmp=true
+PrivateDevices=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX AF_NETLINK
+LockPersonality=true
+
+[Install]
+WantedBy=multi-user.target
